@@ -50,17 +50,17 @@
             },
             "overwrite_levy_multiplier": {
               "type": "boolean",
-              "title": "Overwrite Levy Multiplier"
+              "title": "Update Levy per KG (default: LKR 3)"
             },
             "levy_multiplier": {
               "type": "number",
-              "title": "Levy Multiplier",
+              "title": "Levy per KG",
               "exclusiveMinimum": 0
             },
             "assessed_levy": {
               "type": "number",
               "title": "Assessed Levy (LKR)",
-              "description": "Assessed Levy = Quantity to be Exported × 3, or × the Levy Multiplier when it is overwritten",
+              "description": "Assessed Levy = Quantity to be Exported × Levy per KG",
               "x-computed": {
                 "inputs": {
                   "quantity_to_be_exported": "quantity_to_be_exported",
