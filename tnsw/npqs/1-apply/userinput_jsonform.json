@@ -247,7 +247,7 @@
           "original_certificate_attached": {
             "type": "boolean",
             "title": "The original certificate (or certified true copy) is attached",
-            "default": true
+            "default": false
           },
           "additional_inspection": {
             "type": "boolean",
@@ -855,8 +855,7 @@
                 { "const": "package", "title": "Package" },
                 { "const": "free_text", "title": "Free Text" },
                 { "const": "bulk", "title": "Bulk" }
-              ],
-              "default": "package"
+              ]
             },
             "packages_free_text": {
               "type": "string",
@@ -893,7 +892,8 @@
             "commodity_common_name",
             "commodity_botanical_name",
             "commodity_description",
-            "quantity_net_weight"
+            "quantity_net_weight",
+            "package_arrangement"
           ],
           "allOf": [
             {
@@ -1103,7 +1103,19 @@
       "consignee_address",
       "consignee_country",
       "commodities"
-    ]
+    ],
+    "if": {
+      "properties": { "certificate_type": { "const": "re-export" } },
+      "required": ["certificate_type"]
+    },
+    "then": {
+      "required": ["re_export"],
+      "properties": {
+        "re_export": {
+          "required": ["original_certificate_form", "packing", "containers"]
+        }
+      }
+    }
   },
   "uiSchema": {
     "type": "Categorization",
